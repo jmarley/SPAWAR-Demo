@@ -1,6 +1,7 @@
--Demo
 Piper Internship SPAWAR Demo
 
-I have edited this file. I can do anything now. Fear me, all!
+This code allows a Raspberry Pi 3 to detect devices with Bluetooth enabled that are actively visible to other devices.
 
-sin(gerine)/cos(gerine) = 🍊
+
+
+
