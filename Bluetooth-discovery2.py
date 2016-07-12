@@ -2,7 +2,7 @@ import bluetooth
 
 search = 1
 first = 1
-NewList = ['none', 'none']
+NewList = []
 NewListCat = []
 OldList = []
 
@@ -45,9 +45,9 @@ while search == 1:              #Loops code infinitely.
 
     elif len(nearby_devices)== 0:
 
-        NewList = ['none', 'none']
+        NewList = []
 
-        NewListCat = ['none', 'none']
+        NewListCat = []
         
     #If NewList and OldList are the same, prints sad face.
         
@@ -60,7 +60,7 @@ while search == 1:              #Loops code infinitely.
 
         else:
 
-            print "Found %d devices." % len(nearby_devices)
+            print "Found 0 devices."
         
             print "NewList: "
             print NewListCat
