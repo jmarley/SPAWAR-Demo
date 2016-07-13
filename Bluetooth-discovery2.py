@@ -31,11 +31,7 @@ while search == 1:              #Loops code infinitely.
             NewList =  [addr, name]
             NewListCat = NewListCat + NewList
             
-        print NewListCat
-
-        OldList = NewListCat
-
-        NewListCat = []
+            print NewListCat
 
         first = 2
 
@@ -44,17 +40,15 @@ while search == 1:              #Loops code infinitely.
 # If no devices are connected, resets NewList to (none, none).
 
     elif len(nearby_devices)== 0:
+        
+        OldList = NewListCat
 
         NewList = []
-
-        NewListCat = []
         
     #If NewList and OldList are the same, prints sad face.
         
-        if OldList == NewListCat:
+        if set(OldList) == set(NewList):
             print ":-("
-
-            OldList = NewListCat
 
     #If a difference in NewList occurs, prints difference with a smiley face.
 
@@ -78,6 +72,9 @@ while search == 1:              #Loops code infinitely.
 #    If different, prints number of devices with NewList and OldList.
 
     else:   
+        OldList = NewListCat
+        
+        NewListCat = []
         
         for name, addr in nearby_devices:
 
@@ -85,7 +82,7 @@ while search == 1:              #Loops code infinitely.
             
             NewListCat = NewListCat + NewList
             
-        if OldList == NewListCat:
+        if set(OldList) == set(NewListCat):
             print "(-:"
     
         else:
@@ -102,8 +99,3 @@ while search == 1:              #Loops code infinitely.
             print NewListCat
             print "OldList: "
             print OldList
-
-        OldList = NewListCat
-        
-        NewListCat = []
-
