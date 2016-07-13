@@ -4,11 +4,14 @@ import nmap
 import time
 import sys
 import os
+import json
+import socket
 import requests
 import itertools
 import ConfigParser
 from collections import OrderedDict
 from ConfigParser import RawConfigParser
+
 
 # Scan your local network for all hosts
 def scan():
