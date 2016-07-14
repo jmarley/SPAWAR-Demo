@@ -112,36 +112,36 @@ if __name__ == "__main__":
     filewrite.write(n)
     print scannedHosts
 
-#    recognizedHosts = set()
-#    for hostName, macs in KNOWN_HOSTS.iteritems():
+    recognizedHosts = set()
+    for hostName, macs in KNOWN_HOSTS.iteritems():
 
-#      print "known ", macs
+      print "known ", macs
 
-     # for scannedHost in scannedHosts:
+      for scannedHost in scannedHosts:
 
-     #   print scannedHost["macs"]
-     #   if scannedHost["macs"] in macs:
-     #     recognizedHosts.add(hostname)
+        print scannedHost["mac"]
+        if scannedHost["mac"] in macs:
+          recognizedHosts.add(hostname)
 
 
 
-#    print recognizedHosts
-    # recognizedHosts = set([KNOWN_HOSTS[host] for host in scannedHosts if host in KNOWN_HOSTS])
+    print recognizedHosts
+     recognizedHosts = set([KNOWN_HOSTS[host] for host in scannedHosts if host in KNOWN_HOSTS])
 
     # who joined the network?
-#    newHosts = recognizedHosts - activeHosts
+    newHosts = recognizedHosts - activeHosts
 
     # who left the network?
-#    leftHosts = activeHosts - recognizedHosts
+    leftHosts = activeHosts - recognizedHosts
 
     print "----------------------------------"
-#    print "left",leftHosts
-#    print "joined", newHosts
-#    print "activeHosts", activeHosts
-#    print "recognizedHosts", recognizedHosts
+    print "left",leftHosts
+    print "joined", newHosts
+    print "activeHosts", activeHosts
+    print "recognizedHosts", recognizedHosts
 
     # remember everyone for the next scan
-#    activeHosts = recognizedHosts
+    activeHosts = recognizedHosts
 
     # wait 60 seconds before trying again
     time.sleep(10)
