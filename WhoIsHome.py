@@ -107,7 +107,9 @@ if __name__ == "__main__":
 
     print "scannedHosts"
     print len(scannedHosts)
-
+    n = str(len(scannedHosts))
+    filewrite = open("WifiData.txt", "w")
+    filewrite.write(n)
     print scannedHosts
 
 #    recognizedHosts = set()
