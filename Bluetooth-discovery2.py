@@ -32,7 +32,12 @@ while search == 1:              #Loops code infinitely.
             NewListCat = NewListCat + NewList
             
             print NewListCat
-
+            
+        filewrite = open("BluetoothData.txt", "wr+")
+        no = str(len(nearby_devices))
+        filewrite.write(no + '\n' + '\n')
+        for name, addr in nearby_devices:
+            filewrite.write("%s - %s\n" % (addr, name))
         first = 2
 
         print ":-P"
@@ -62,6 +67,12 @@ while search == 1:              #Loops code infinitely.
             print OldList
 
         OldList = NewListCat
+        
+        filewrite = open("BluetoothData.txt", "wr+")
+        no = str(len(nearby_devices))
+        filewrite.write(no + '\n' + '\n')
+        for name, addr in nearby_devices:
+            filewrite.write("%s - %s\n" % (addr, name))
            
         NewListCat = []
 
@@ -99,3 +110,9 @@ while search == 1:              #Loops code infinitely.
             print NewListCat
             print "OldList: "
             print OldList
+            
+        filewrite = open("BluetoothData.txt", "wr+")
+        no = str(len(nearby_devices))
+        filewrite.write(no + '\n' + '\n')
+        for name, addr in nearby_devices:
+            filewrite.write("%s - %s\n" % (addr, name))
