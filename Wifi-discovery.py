@@ -52,22 +52,21 @@ if __name__ == "__main__":
 
   while True:
 
+# Find the number of devices and their MAC addresses, prining the data.
     scannedHosts = [host["mac"] for host in scan() if "mac" in host]
 
     print "scannedHosts"
     print len(scannedHosts)
+    print scannedHosts
     
+# Write number of hosts and their MAC addresses to a file ccalled WifiData.txt
     no = str(len(scannedHosts))
-
     filewrite = open("WifiData.txt", "wr+")
-    
+  
     filewrite.write(no + '\n' +"\n")
     for addr in scannedHosts:
       filewrite.write("%s\n" % addr)
-    
-    print scannedHosts
 
-   
     print "----------------------------------"
    
     # wait 30 seconds before trying again
