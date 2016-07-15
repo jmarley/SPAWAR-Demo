@@ -33,6 +33,7 @@ while search == 1:              #Loops code infinitely.
             
             print NewList
             
+# Writes number of devices and mac addresses to a file Bluetoothdata.txt            
         filewrite = open("BluetoothData.txt", "wr+")
         no = str(len(nearby_devices))
         filewrite.write(no + '\n' + '\n')
@@ -68,6 +69,7 @@ while search == 1:              #Loops code infinitely.
 
         OldList = NewListCat
         
+#Writes data to file        
         filewrite = open("BluetoothData.txt", "wr+")
         no = str(len(nearby_devices))
         filewrite.write(no + '\n' + '\n')
@@ -110,7 +112,8 @@ while search == 1:              #Loops code infinitely.
             print NewListCat
             print "OldList: "
             print OldList
-            
+
+Writes data to file            
         filewrite = open("BluetoothData.txt", "wr+")
         no = str(len(nearby_devices))
         filewrite.write(no + '\n' + '\n')
