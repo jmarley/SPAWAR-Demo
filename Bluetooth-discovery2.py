@@ -31,7 +31,7 @@ while search == 1:              #Loops code infinitely.
             NewList =  [addr, name]
             NewListCat = NewListCat + NewList
             
-            print NewListCat
+            print NewList
             
         filewrite = open("BluetoothData.txt", "wr+")
         no = str(len(nearby_devices))
