@@ -9,14 +9,16 @@ OldList = []
 
 while search == 1:              #Loops code infinitely.
 
-# TODO Reset device list to null each iteration
     nearby_devices = bluetooth.discover_devices(lookup_names = True)
 
-# On first iteration, prints initial device number reading with weird face.
+    OldList = NewListCat
+    NewListCat = []
+    NewList = []
 
+# On first iteration, prints initial device number reading with weird face.
     if first == 1:
 
-# possiblity to simplifying conditinoals
+# possiblity to simplifying conditionals
         if len(nearby_devices) == 1:
 
             print "Found %d device:" % len(nearby_devices)
@@ -42,7 +44,7 @@ while search == 1:              #Loops code infinitely.
 # Writes number of devices and mac addresses to a file Bluetoothdata.txt
         filewrite = open("BluetoothData.txt", "wr+")
         no = str(len(nearby_devices))
-        # writes number of near by devices
+        # writes number of nearby devices
         filewrite.write(no + '\n' + '\n')
 
         for name, addr in nearby_devices:
@@ -54,15 +56,8 @@ while search == 1:              #Loops code infinitely.
         # testing
         print ":-P"
 
-# If no devices are connected, resets NewList to (none, none).
 
     elif len(nearby_devices)== 0:
-
-        # track historical device list
-        OldList = NewListCat
-
-        # null list of devices
-        NewList = []
 
     #If NewList and OldList are the same, prints sad face.
 
@@ -71,18 +66,17 @@ while search == 1:              #Loops code infinitely.
         if set(OldList) == set(NewList):
             print ":-("
 
-    #If a difference in NewList occurs, prints difference with a smiley face.
+    #If a difference in NewList occurs, prints difference.
 
         else:
 
-            # print "Found 0 devices."
+            print "Found 0 devices."
 
             print "NewList: "
             print NewListCat
             print "OldList: "
             print OldList
         #
-        OldList = NewListCat
 
         #Writes data to file
         # TODO write method for opening and writing to a file
@@ -92,8 +86,6 @@ while search == 1:              #Loops code infinitely.
         for name, addr in nearby_devices:
             filewrite.write("%s - %s\n" % (addr, name))
         # TODO close file
-        # TODO look at moving upper level scope
-        NewListCat = []
 
 #If one or more devices is connected:
 #    Writes NewList to OldList
@@ -102,10 +94,6 @@ while search == 1:              #Loops code infinitely.
 #    If different, prints number of devices with NewList and OldList.
 
     else:
-        OldList = NewListCat
-        # TODO look at moving upper level scope
-        NewListCat = []
-        # TODO look into using/creating method
         for name, addr in nearby_devices:
 
             NewList =  [addr, name]
