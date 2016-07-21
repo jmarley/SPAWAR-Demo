@@ -2,10 +2,18 @@ import bluetooth
 
 search = 1
 first = 1
-# TODO look at moving upper level scope
 NewList = []
 NewListCat = []
 OldList = []
+
+def write_to_file ():
+    filewrite = open("BluetoothData.txt", "wr+")
+    no = str(len(nearby_devices))
+    filewrite.write(no + '\n' + '\n')
+    for name, addr in nearby_devices:
+        filewrite.write("%s - %s\n" % (addr, name))
+    filewrite.close()
+    return
 
 while search == 1:              #Loops code infinitely.
 
@@ -42,15 +50,8 @@ while search == 1:              #Loops code infinitely.
             print NewList
 
 # Writes number of devices and mac addresses to a file Bluetoothdata.txt
-        filewrite = open("BluetoothData.txt", "wr+")
-        no = str(len(nearby_devices))
-        # writes number of nearby devices
-        filewrite.write(no + '\n' + '\n')
-
-        for name, addr in nearby_devices:
-            filewrite.write("%s - %s\n" % (addr, name))
-        # TODO close file when done writing
-        # tracking variable
+        write_to_file()
+        
         first = 2
 
         # testing
@@ -78,14 +79,7 @@ while search == 1:              #Loops code infinitely.
             print OldList
         #
 
-        #Writes data to file
-        # TODO write method for opening and writing to a file
-        filewrite = open("BluetoothData.txt", "wr+")
-        no = str(len(nearby_devices))
-        filewrite.write(no + '\n' + '\n')
-        for name, addr in nearby_devices:
-            filewrite.write("%s - %s\n" % (addr, name))
-        # TODO close file
+        write_to_file()
 
 #If one or more devices is connected:
 #    Writes NewList to OldList
@@ -120,9 +114,4 @@ while search == 1:              #Loops code infinitely.
             print OldList
 
 # Writes data to file
-# TODO use existing method for block below            
-        filewrite = open("BluetoothData.txt", "wr+")
-        no = str(len(nearby_devices))
-        filewrite.write(no + '\n' + '\n')
-        for name, addr in nearby_devices:
-            filewrite.write("%s - %s\n" % (addr, name))
+        write_to_file()
