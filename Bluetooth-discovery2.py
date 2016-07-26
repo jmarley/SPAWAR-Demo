@@ -20,8 +20,10 @@ def create_lists():
     for name, addr in nearby_devices:
 
         NewList =  [addr, name]
+        
+        NewListCat = []
         # used for historical references
-        NewListCat = NewListCat + NewList
+        NewListCat = NewListCat.append(NewList)
     
     return 
     
@@ -41,15 +43,11 @@ while True:              #Loops code infinitely.
 # possiblity of simplifying conditionals
         if len(nearby_devices) == 1:
 
-            print "Found %d device:" % len(nearby_devices)
-
-        elif len(nearby_devices) == 0:
-
-            print "Found %d devices." % len(nearby_devices)
+            print "Found %d device." % len(nearby_devices)
 
         else:
 
-            print "Found %d devices:" % len(nearby_devices)
+            print "Found %d devices." % len(nearby_devices)
         
         # Creates lists of devices
         create_lists()
