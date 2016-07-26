@@ -81,11 +81,11 @@ while True:              #Loops code infinitely.
 
         if len(nearby_devices) == 1:
 
-            print "Found %d device:" % len(nearby_devices)
+            print "Found %d device." % len(nearby_devices)
 
         else:
 
-            print "Found %d devices:" % len(nearby_devices)
+            print "Found %d devices." % len(nearby_devices)
 
         # Tests Lists
         from Test_Bluetooth import test_lists
