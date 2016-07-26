@@ -1,5 +1,4 @@
 import bluetooth
-import Test_Bluetooth.py
 
 first = 1
 NewList = []
@@ -17,7 +16,7 @@ def write_to_file ():
     return
 
 # defines NewList and NewListCat as the names and addresses of devices
-def create_lists()
+def create_lists():
     for name, addr in nearby_devices:
 
         NewList =  [addr, name]
@@ -56,7 +55,7 @@ while True:              #Loops code infinitely.
         create_lists()
 
         # Tests that the lists are correct
-        test_lists()
+        from Test_Bluetooth import test_lists
 
 # Writes number of devices and mac addresses to a file Bluetoothdata.txt
         write_to_file()
@@ -64,7 +63,7 @@ while True:              #Loops code infinitely.
         first = 2
 
         # testing
-        test_first()
+        from Test_Bluetooth import test_first
 
     elif len(nearby_devices)== 0:
 
@@ -91,7 +90,7 @@ while True:              #Loops code infinitely.
             print "Found %d devices:" % len(nearby_devices)
 
         # Tests Lists
-        test_lists()
+        from Test_Bluetooth import test_lists
 
 # Writes data to file
         write_to_file()
