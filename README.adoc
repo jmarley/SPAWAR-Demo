@@ -1,7 +1,35 @@
--Demo
+= Who's Bluethooth and Wifi Discovery App
+
 Piper Internship SPAWAR Project
 
-Bluetooth-discovery2.py code allows a Raspberry Pi 3 to detect devices with Bluetooth enabled. 
+Bluetooth-discovery2.py code allows a Raspberry Pi 3 to detect devices with Bluetooth enabled.
 Devices will only be detected if they are on the Bluetooth screen.
 
 Wifi-discovery.py code allows a Raspberry Pi 3 to detect a large number of devices through Wifi.
+
+== Architecture
+
+== Setup
+
+. install virtualenv
+[source,bash]
+----
+$ pip install virtualenv
+----
+. clone project
+
+. create virtual environment
+[source,bash]
+----
+$ virtualenv venv
+----
+
+== Testing
+
+== Running
+
+== References
+
+. http://www.instructables.com/id/Raspberry-Pi-Bluetooth-InOut-Board-or-Whos-Hom/
+. http://jamie.curle.io/posts/installing-pip-virtualenv-and-virtualenvwrapper-on-os-x/
+.
