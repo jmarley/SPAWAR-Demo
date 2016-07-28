@@ -1,0 +1,57 @@
+= Piper Internship SPAWAR Sniffer Project
+
+TODO: update db name from phpwork to snifferdb
+TODO: get dump of just db schema w no data
+TODO: get another dump of the table with db creation, currently need to Create
+db before being able to run restore command
+
+== Architecture
+
+== Setup
+
+.Create Database
+. pull docker image
+[source,bash]
+----
+$ docker pull mysql
+----
+
+. run docker image
+[source,bash]
+----
+$ docker run -p 3306:3306 \
+--name snifferdb \
+-e MYSQL_USER=admin \
+-e MYSQL_ROOT_PASSWORD=sniffered \
+-e MYSQL_PASSWORD=pungent
+-d mysql
+----
+
+.Restore database schemas
+. install mysql client cli tools
+[source,bash]
+----
+$ yum install mysql
+----
+. Restore DB
+[source,bash]
+----
+$ mysql --host=127.0.0.1 -u root -psniffered \
+snifferdb < schema.sql
+----
+
+.PHP webapplication
+
+
+== Bluetooth Sniffer
+Bluetooth-discovery2.py code allows a Raspberry Pi 3 to detect devices with
+Bluetooth enabled. Devices will only be detected if they are on the Bluetooth
+screen.
+
+== Wifi Sniffer
+Wifi-discovery.py code allows a Raspberry Pi 3 to detect a large number of
+devices through Wifi.
+
+== References
+
+. http://webcheatsheet.com/sql/mysql_backup_restore.php[MySql Backup and Restore]
