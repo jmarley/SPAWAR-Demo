@@ -1,35 +1,57 @@
-= Who's Bluethooth and Wifi Discovery App
+= Piper Internship SPAWAR Sniffer Project
 
-Piper Internship SPAWAR Project
-
-Bluetooth-discovery2.py code allows a Raspberry Pi 3 to detect devices with Bluetooth enabled.
-Devices will only be detected if they are on the Bluetooth screen.
-
-Wifi-discovery.py code allows a Raspberry Pi 3 to detect a large number of devices through Wifi.
+TODO: update db name from phpwork to snifferdb
+TODO: get dump of just db schema w no data
+TODO: get another dump of the table with db creation, currently need to Create
+db before being able to run restore command
 
 == Architecture
 
 == Setup
 
-. install virtualenv
+.Create Database
+. pull docker image
 [source,bash]
 ----
-$ pip install virtualenv
+$ docker pull mysql
 ----
-. clone project
 
-. create virtual environment
+. run docker image
 [source,bash]
 ----
-$ virtualenv venv
+$ docker run -p 3306:3306 \
+--name snifferdb \
+-e MYSQL_USER=admin \
+-e MYSQL_ROOT_PASSWORD=sniffered \
+-e MYSQL_PASSWORD=pungent
+-d mysql
 ----
 
-== Testing
+.Restore database schemas
+. install mysql client cli tools
+[source,bash]
+----
+$ yum install mysql
+----
+. Restore DB
+[source,bash]
+----
+$ mysql --host=127.0.0.1 -u root -psniffered \
+snifferdb < schema.sql
+----
 
-== Running
+.PHP webapplication
+
+
+== Bluetooth Sniffer
+Bluetooth-discovery2.py code allows a Raspberry Pi 3 to detect devices with
+Bluetooth enabled. Devices will only be detected if they are on the Bluetooth
+screen.
+
+== Wifi Sniffer
+Wifi-discovery.py code allows a Raspberry Pi 3 to detect a large number of
+devices through Wifi.
 
 == References
 
-. http://www.instructables.com/id/Raspberry-Pi-Bluetooth-InOut-Board-or-Whos-Hom/
-. http://jamie.curle.io/posts/installing-pip-virtualenv-and-virtualenvwrapper-on-os-x/
-.
+. http://webcheatsheet.com/sql/mysql_backup_restore.php[MySql Backup and Restore]
