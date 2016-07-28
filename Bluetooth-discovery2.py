@@ -20,17 +20,17 @@ def create_lists():
     for name, addr in nearby_devices:
 
         NewList =  [addr, name]
-        
+
         NewListCat = []
         # used for historical references
         NewListCat = NewListCat.append(NewList)
-    
-    return 
-    
+
+    return
+
 while True:              #Loops code infinitely.
 
     nearby_devices = bluetooth.discover_devices(lookup_names = True)
-    
+
     # Defines lists for each iteration.
     OldList = NewListCat
     test_lists()
@@ -41,6 +41,7 @@ while True:              #Loops code infinitely.
     if first == 1:
 
 # possiblity of simplifying conditionals
+# creating method.
         if len(nearby_devices) == 1:
 
             print "Found %d device." % len(nearby_devices)
@@ -48,23 +49,25 @@ while True:              #Loops code infinitely.
         else:
 
             print "Found %d devices." % len(nearby_devices)
-        
+
         # Creates lists of devices
         create_lists()
 
+# look into using try/except block
         # Tests that the lists are correct
         from Test_Bluetooth import test_lists
 
 # Writes number of devices and mac addresses to a file Bluetoothdata.txt
         write_to_file()
-        
+
+        # look into ways of counters for recursion counter = counter +
         first = 2
 
         # testing
         from Test_Bluetooth import test_first
 
     elif len(nearby_devices)== 0:
-
+   # look into reusing the conditional above
         print "Found 0 devices."
 
         # Write data to a file
@@ -75,7 +78,7 @@ while True:              #Loops code infinitely.
 #    Compares NewList and OldList
 
     else:
-        
+
         # Creates lists of devices
         create_lists()
 
