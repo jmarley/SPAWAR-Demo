@@ -1,9 +1,6 @@
 = Piper Internship SPAWAR Sniffer Project
 
 TODO: update db name from phpwork to snifferdb
-TODO: get dump of just db schema w no data
-TODO: get another dump of the table with db creation, currently need to Create
-db before being able to run restore command
 
 == Architecture
 
@@ -23,7 +20,7 @@ $ docker run -p 3306:3306 \
 --name snifferdb \
 -e MYSQL_USER=admin \
 -e MYSQL_ROOT_PASSWORD=sniffered \
--e MYSQL_PASSWORD=pungent
+-e MYSQL_PASSWORD=pungent \
 -d mysql
 ----
 
@@ -33,15 +30,95 @@ $ docker run -p 3306:3306 \
 ----
 $ yum install mysql
 ----
-. Restore DB
+. Restore Empty DB
 [source,bash]
 ----
 $ mysql --host=127.0.0.1 -u root -psniffered \
-snifferdb < schema.sql
+< database/snifferdb-schema.sql
+----
+. Restore DB with data
+[source,bash]
+----
+mysql --host=127.0.0.1 -u root -psniffered \
+< snifferdb-schema-with-data.sql
+----
+
+.Raspberry Pi setup
+. install packages
++
+[source,base]
+----
+$ sudo apt-get install mysql-server git vim -y
+----
+NOTE: you'll have to set a root password
+
+. Enable MySql Service
++
+[source,base]
+----
+$ systemctl enable mysql
+----
+
+. Download git project
++
+[source,base]
+----
+
+----
+NOTE: Assuming ssh-key was setup already and added to the repo
+
+. rename hostname
++
+[source,base]
+----
+$ sudo hostnamectl set-hostname sensordb.sd.spawar.navy.mil
+----
+
+. update hosts file on each machine
++
+[source,base]
+----
+# echo '127.0.0.1 sensordb.sd.spawar.navy.mil' >> /etc/hosts
+----
+
+. Create user
++
+[source,base]
+----
+useradd -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio jmarley
+----
+
+. Generate ssh keys
++
+[source,base]
+----
+ssh-keygen -t rsa -f /Users/jasonmarley/projects/SPAWAR-Demo/keys/id_rsa_pi
+----
+
+. Copy ssh keys
++
+[source,base]
+----
+ssh-copy-id -i keys/id_rsa_pi.pub pi@192.168.56.236
+----
+
+. Restrict ssh to keys only
++
+[source,base]
+----
+$ sudo vim /etc/ssh/sshd_config
+   PermitRootLogin no
+   PasswordAuthentication no
+$ sudo service ssh restart
 ----
 
 .PHP webapplication
+php stuff
 
+== Python packages
+
+sudo pip install nmap
+sudo pip install requests
 
 == Bluetooth Sniffer
 Bluetooth-discovery2.py code allows a Raspberry Pi 3 to detect devices with
@@ -55,3 +132,4 @@ devices through Wifi.
 == References
 
 . http://webcheatsheet.com/sql/mysql_backup_restore.php[MySql Backup and Restore]
+. https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04[MySql Server Configuration]

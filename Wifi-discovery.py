@@ -34,8 +34,8 @@ def scan():
     hostList.append(host)
 
   return hostList
-  
-  
+
+
 # Get your local network IP address. e.g. 192.168.178.X
 def get_lan_ip():
 
@@ -58,17 +58,16 @@ if __name__ == "__main__":
     print "scannedHosts"
     print len(scannedHosts)
     print scannedHosts
-    
+
 # Write number of hosts and their MAC addresses to a file ccalled WifiData.txt
     no = str(len(scannedHosts))
     filewrite = open("WifiData.txt", "wr+")
-  
+
     filewrite.write(no + '\n' +"\n")
     for addr in scannedHosts:
       filewrite.write("%s\n" % addr)
 
     print "----------------------------------"
-   
+
     # wait 30 seconds before trying again
     time.sleep(10)
-
