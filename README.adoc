@@ -1,7 +1,5 @@
 = Piper Internship SPAWAR Sniffer Project
 
-TODO: update db name from phpwork to snifferdb
-
 == Architecture
 
 == Setup
@@ -59,6 +57,25 @@ NOTE: you'll have to set a root password
 $ systemctl enable mysql
 ----
 
+. Enable MySql to bind to anyIP
++
+[source,base]
+----
+----
+. Start MySql Server
++
+[source,base]
+----
+----
+. Add db User
++
+[source,base]
+----
+$ mysql -u root -p
+mysql> CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+mysql>
+mysql>
+----
 . Download git project
 +
 [source,base]
@@ -85,21 +102,21 @@ $ sudo hostnamectl set-hostname sensordb.sd.spawar.navy.mil
 +
 [source,base]
 ----
-useradd -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio jmarley
+$ sudo useradd -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,spi,i2c,gpio jmarley
 ----
 
 . Generate ssh keys
 +
 [source,base]
 ----
-ssh-keygen -t rsa -f /Users/jasonmarley/projects/SPAWAR-Demo/keys/id_rsa_pi
+$ ssh-keygen -t rsa -f /Users/jasonmarley/projects/SPAWAR-Demo/keys/id_rsa_pi
 ----
 
 . Copy ssh keys
 +
 [source,base]
 ----
-ssh-copy-id -i keys/id_rsa_pi.pub pi@192.168.56.236
+$ ssh-copy-id -i keys/id_rsa_pi.pub pi@192.168.56.236
 ----
 
 . Restrict ssh to keys only
@@ -133,3 +150,5 @@ devices through Wifi.
 
 . http://webcheatsheet.com/sql/mysql_backup_restore.php[MySql Backup and Restore]
 . https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-14-04[MySql Server Configuration]
+. https://www.digitalocean.com/community/tutorials/how-to-create-a-new-user-and-grant-permissions-in-mysql [Adding Users]
+.
