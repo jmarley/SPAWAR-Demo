@@ -18,14 +18,29 @@ def write_to_file ():
 # defines NewList and NewListCat as the names and addresses of devices
 def create_lists():
     for name, addr in nearby_devices:
-
         NewList =  [addr, name]
-
         NewListCat = []
         # used for historical references
         NewListCat = NewListCat.append(NewList)
-
     return
+
+def write_to_db():
+    db = MySQLdb.connect("localhost", "SPAWARDemoPi", "SPAWARPi", "snifferdb")
+    cursor = db.cursor()
+    sql = "SELECT * FROM ActiveBlueTooth"
+    for name, addr in nearby_devices:
+        print "%s, %s" % (name, addr)
+        sql = """REPLACE INTO ActiveBlueTooth (TIMESTAMP, MAC, DeviceName, SensorID) 
+            VALUES (CURRENT_TIMESTAMP, '%s', '%s', '%s')""" % (name, addr, 'SPAWARPi')
+    try:
+        cursor.execute(sql)
+        db.commit()
+    except IOError as error:
+        print error
+        pass
+    db.close()
+    
+    
 
 while True:              #Loops code infinitely.
 
@@ -33,7 +48,6 @@ while True:              #Loops code infinitely.
 
     # Defines lists for each iteration.
     OldList = NewListCat
-    test_lists()
     NewListCat = []
     NewList = []
 
@@ -59,7 +73,7 @@ while True:              #Loops code infinitely.
 
 # Writes number of devices and mac addresses to a file Bluetoothdata.txt
         write_to_file()
-
+        write_to_db()
         # look into ways of counters for recursion counter = counter +
         first = 2
 
@@ -95,3 +109,4 @@ while True:              #Loops code infinitely.
 
 # Writes data to file
         write_to_file()
+        write_to_db()
