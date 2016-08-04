@@ -56,7 +56,6 @@ CREATE TABLE IF NOT EXISTS `ActiveWIFI` (
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `MAC` char(17) NOT NULL,
   `SSID` char(17) NOT NULL,
-  `DeviceName` char(24) NOT NULL,
   `SensorID` char(24) NOT NULL,
   PRIMARY KEY (`MAC`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -65,11 +64,11 @@ CREATE TABLE IF NOT EXISTS `ActiveWIFI` (
 -- Dumping data for table `ActiveWIFI`
 --
 
-INSERT INTO `ActiveWIFI` (`Timestamp`, `MAC`, `SSID`, `DeviceName`, `SensorID`) VALUES
-('2016-07-27 22:45:47', 'aa:11:22:33:44:00', 'AirForce', 'Thunderbirds', '512'),
-('2016-07-27 17:22:59', 'aa:11:22:33:44:55', 'Tempy', 'Round1', '512'),
-('2016-07-27 22:44:49', 'aa:11:22:33:44:66', 'KAOS', 'Sigfried', '512'),
-('2016-07-27 22:45:19', 'aa:11:22:33:44:99', 'Navy', 'Gridley', '512');
+INSERT INTO `ActiveWIFI` (`Timestamp`, `MAC`, `SSID`, `SensorID`) VALUES
+('2016-07-27 22:45:47', 'aa:11:22:33:44:00', 'AirForce', '512'),
+('2016-07-27 17:22:59', 'aa:11:22:33:44:55', 'Tempy', '512'),
+('2016-07-27 22:44:49', 'aa:11:22:33:44:66', 'KAOS', '512'),
+('2016-07-27 22:45:19', 'aa:11:22:33:44:99', 'Navy', '512');
 
 -- --------------------------------------------------------
 
