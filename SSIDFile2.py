@@ -163,14 +163,14 @@ def main():
     cells=cells[1:]
 
     for cell in cells:
-        #parsed_cells.append(parse_cell(cell))
+        parsed_cells.append(parse_cell(cell))
         MAC = get_address(cell)
         name = get_name(cell)
         #print "The MAC is: " + MAC + "and the name is: " + name
         write_to_db(MAC, name)
 
-    #sort_cells(parsed_cells)
+    sort_cells(parsed_cells)
 
-    #print_cells(parsed_cells)
+    print_cells(parsed_cells)
 
 main()
