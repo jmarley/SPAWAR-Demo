@@ -33,12 +33,12 @@ def write_to_db():
         print "%s, %s" % (name, addr)
         sql = """REPLACE INTO ActiveBlueTooth (TIMESTAMP, MAC, DeviceName, SensorID) 
             VALUES (CURRENT_TIMESTAMP, '%s', '%s', '%s')""" % (name, addr, 'SPAWARPi')
-    try:
-        cursor.execute(sql)
-        db.commit()
-    except IOError as error:
-        print error
-        pass
+        try:
+            cursor.execute(sql)
+            db.commit()
+        except IOError as error:
+            print error
+            pass
     db.close()
     
     
