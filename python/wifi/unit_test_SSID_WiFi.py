@@ -1,11 +1,12 @@
 #python modules
-import bluetooth
+import sys
+import subprocess
 import MySQLdb
 import os
 import unittest
 import gc
 #project code
-import bluesniff
+import SSID_WiFi
 
 # pulls environement variables needed for connection to the database from openshift
 DBUser = os.getenv("OPENSHIFT_MYSQL_DB_USERNAME")
@@ -13,9 +14,9 @@ DBPword = os.getenv("OPENSHIFT_MYSQL_DB_PASSWORD")
 DBName = os.getenv("DBName")
 DBHost = os.getenv("OPENSHIFT_MYSQL_DB_HOST")
 DBPort  = os.getenv("OPENSHIFT_MYSQL_DB_PORT")
-class TestBluesniff(unittest.TestCase):
+class TestSSIDsniff(unittest.TestCase):
     def setUp(self,DBUser,DBPword,DBName,DBHost):
-        db = bluesniff.bluesniff(self,DBUser,DBPword,DBName,DBHost)
+        db = SSID_WiFi.SSID_WiFi(self,DBUser,DBPword,DBName,DBHost)
 
     def tearDown(self):
         del db
@@ -33,9 +34,9 @@ class TestBluesniff(unittest.TestCase):
 
     def write2dbtest(self):
 #       DeviceList = (DeviceName,MacAddr)
-        DeviceList = ('DeviceName1','00:01:02:03:04:05','DeviceName2','00:01:02:03:04:06')
+        DeviceList = ('00:01:02:03:04:05','DeviceName2')
 # Im not sure about this line. should it be testdb.bluesniff.write_to_db ??
-        bluesniff.write_to_db(self,DeviceList)
+        SSID_WiFi.write_to_db(self,DeviceList)
         cursor = db.cursor()
         data = cursor.fetchone()
         self.assertEqual(1,data)
